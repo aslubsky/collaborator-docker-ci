@@ -9,13 +9,24 @@ RUN apt-get install -y \
     bsdutils \
     unzip \
     git \
+    make \
+    g++ \
     nano \
     apt-transport-https
 
+RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
+RUN echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
+
+RUN apt-get install -y nodejs php7.1 php7.1-mysql php7.1-xml php7.1-curl php7.1-gd php7.1-mcrypt php7.1-intl php7.1-zip php7.1-mbstring php7.1-sqlite php7.1-ldap php7.1-redis
 
 RUN npm install -g node-gyp gulp
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
+RUN /usr/bin/composer.phar self-update
+
+RUN wget -O /usr/bin/phpunit https://phar.phpunit.de/phpunit-5.phar
+RUN chmod +x /usr/bin/phpunit
 
 #
 # Remove the packages that are no longer required after the package has been installed
