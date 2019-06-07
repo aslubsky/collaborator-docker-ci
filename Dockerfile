@@ -15,7 +15,7 @@ RUN apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
-RUN npm install -g gulp
+RUN npm install -g node-gyp gulp
 
 #
 # Remove the packages that are no longer required after the package has been installed
