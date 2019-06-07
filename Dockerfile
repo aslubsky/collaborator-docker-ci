@@ -9,10 +9,12 @@ RUN apt-get install -y \
     bsdutils \
     unzip \
     git \
+    gnupg \
     make \
     g++ \
     nano \
-    apt-transport-https
+    apt-transport-https \
+    gpac
 
 RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 RUN echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
