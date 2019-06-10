@@ -13,6 +13,7 @@ RUN apt-get install -y \
     make \
     g++ \
     nano \
+    poppler-utils \
     apt-transport-https \
     gpac
 
@@ -29,6 +30,8 @@ RUN /usr/bin/composer.phar self-update
 
 RUN wget -O /usr/bin/phpunit https://phar.phpunit.de/phpunit-5.phar
 RUN chmod +x /usr/bin/phpunit
+
+RUN cd /tmp && wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb && dpkg -i tidy-5.4.0-64bit.deb
 
 #
 # Remove the packages that are no longer required after the package has been installed
