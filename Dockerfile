@@ -14,6 +14,7 @@ RUN apt-get install -y \
     g++ \
     catdoc \
     nano \
+    poppler-utils \
     apt-transport-https \
     gpac
 
@@ -21,9 +22,9 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 RUN echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
-RUN apt-get install -y nodejs php7.1 php7.1-mysql php7.1-xml php7.1-curl php7.1-gd php7.1-mcrypt php7.1-intl php7.1-zip php7.1-mbstring php7.1-sqlite php7.1-ldap php7.1-redis
+RUN apt-get install -y nodejs php7.1-cli php7.1-mysql php7.1-xml php7.1-curl php7.1-gd php7.1-mcrypt php7.1-intl php7.1-zip php7.1-mbstring php7.1-sqlite php7.1-ldap php7.1-redis
 
-RUN npm install -g node-gyp gulp
+RUN npm install -g node-gyp gulp bower
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
 RUN /usr/bin/composer.phar self-update
