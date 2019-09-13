@@ -12,6 +12,7 @@ RUN apt-get install -y \
     gnupg \
     make \
     g++ \
+    linux-libc-dev \
     catdoc \
     nano \
     poppler-utils \
