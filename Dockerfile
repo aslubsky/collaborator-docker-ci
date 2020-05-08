@@ -19,13 +19,17 @@ RUN apt-get install -y \
     apt-transport-https \
     gpac
 
-RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
-RUN echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs php7.3-cli php7.3-mysql php7.3-xml php7.3-curl php7.3-gd php7.3-intl php7.3-zip php7.3-mbstring php7.3-sqlite php7.3-ldap php7.3-redis
 
-RUN apt-get install -y nodejs php7.1-cli php7.1-mysql php7.1-xml php7.1-curl php7.1-gd php7.1-mcrypt php7.1-intl php7.1-zip php7.1-mbstring php7.1-sqlite php7.1-ldap php7.1-redis
+RUN cd /tmp && git clone https://github.com/nrk/phpiredis.git
+RUN cd /tmp/phpiredis && phpize && ./configure --enable-phpiredis
+RUN cd /tmp/phpiredis && make && make install
+RUN echo "extension=phpiredis.so" > /etc/php/7.3/mods-available/phpiredis.ini
+RUN ln -s /etc/php/7.3/mods-available/phpiredis.ini /etc/php/7.3/cli/conf.d/phpiredis.ini
+RUN ln -s /etc/php/7.3/mods-available/phpiredis.ini /etc/php/7.3/fpm/conf.d/phpiredis.ini
+RUN rm -rf /tmp/phpiredis
 
-RUN npm install -g node-gyp gulp bower
+RUN pecl install mcrypt-1.0.2
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
 RUN /usr/bin/composer.phar self-update
