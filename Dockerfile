@@ -1,4 +1,4 @@
-FROM debian:9.4-slim
+FROM debian:9.12-slim
 
 RUN apt-get update && apt-get -y upgrade
 
