@@ -17,7 +17,12 @@ RUN apt-get install -y \
     nano \
     poppler-utils \
     apt-transport-https \
-    gpac
+    gpac \
+    lsb-release
+
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php7.3.list
+RUN apt-get update
 
 RUN apt-get install -y nodejs php7.3-cli php7.3-mysql php7.3-xml php7.3-curl php7.3-gd php7.3-intl php7.3-zip php7.3-mbstring php7.3-sqlite php7.3-ldap php7.3-redis
 
