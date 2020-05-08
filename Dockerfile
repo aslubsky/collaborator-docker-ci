@@ -2,7 +2,7 @@ FROM debian:9.12-slim
 
 RUN apt-get update && apt-get -y upgrade
 
-RUN apt-get install -y \
+RUN apt-get install --fix-missing -y \
     wget \
     curl \
     dialog \
