@@ -16,7 +16,9 @@ RUN apt-get install --fix-missing -y \
     catdoc \
     nano \
     poppler-utils \
+    libhiredis-dev \
     apt-transport-https \
+    libmcrypt-dev \
     gpac \
     lsb-release
 
