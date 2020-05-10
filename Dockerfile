@@ -33,7 +33,6 @@ RUN cd /tmp/phpiredis && phpize && ./configure --enable-phpiredis
 RUN cd /tmp/phpiredis && make && make install
 RUN echo "extension=phpiredis.so" > /etc/php/7.3/mods-available/phpiredis.ini
 RUN ln -s /etc/php/7.3/mods-available/phpiredis.ini /etc/php/7.3/cli/conf.d/phpiredis.ini
-RUN ln -s /etc/php/7.3/mods-available/phpiredis.ini /etc/php/7.3/fpm/conf.d/phpiredis.ini
 RUN rm -rf /tmp/phpiredis
 
 RUN pecl install mcrypt-1.0.2
